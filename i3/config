@@ -8,7 +8,7 @@ font pango:Noto Sans 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminology 
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -145,31 +145,17 @@ gaps inner 20
 gaps outer 0
 
 #startup
-exec --no-startup-id "compton -b" 
+exec --no-startup-id "picom -b" 
 exec --no-startup-id xset r rate 150 35 # Set initial delay 300ms, repeat 35ms
 exec --no-startup-id "feh --bg-max ~/Pictures/Wallpapers/cp2.jpg --bg-fill ~/Pictures/Wallpapers/cp3.jpg --bg-fill ~/Pictures/Wallpapers/cp4.png"
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id "dropbox"
+exec_always --no-startup-id "dropbox"
 exec --no-startup-id "ntpd -qg"
 exec --no-startup-id "xrandr --output DVI-D-0 --mode 1920x1080 --rate 144"
 
-bindsym XF86AudioRaiseVolume exec "amixer -c 0 sset 'Com Speaker' 1+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -c 0 sset 'Com Speaker' 1- unmute"
+bindsym XF86AudioRaiseVolume exec "amixer -c 2 set 'Com Speaker' 1dB+"
+bindsym XF86AudioLowerVolume exec "amixer -c 2 set 'Com Speaker' 1dB-"
 bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
-
-#plasma setup
-
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
-for_window [class="plasmashell"] floating enable;
-for_window [class="Plasma"] floating enable; border none
-for_window [title="plasma-desktop"] floating enable; border none
-for_window [title="win7"] floating enable; border none
-for_window [class="krunner"] floating enable; border none
-for_window [class="Kmix"] floating enable; border none
-for_window [class="Klipper"] floating enable; border none
-for_window [class="Plasmoidviewer"] floating enable; border none
-for_window [class="(?i)*nextcloud*"] floating disable
-for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px, no_focus 
 
 

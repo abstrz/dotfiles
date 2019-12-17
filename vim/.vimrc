@@ -6,7 +6,7 @@ Plug 'wincent/command-t'
 Plug 'Valloric/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
-Plug 'mattn/emmet-vim'
+Plug 'mboughaba/i3config.vim'
 call plug#end()
 
 set nocompatible
@@ -50,10 +50,15 @@ nnoremap <C-l> <C-w>l
 filetype plugin on
 syntax on
 autocmd vimenter * NERDTree
-colorscheme aqua 
+colorscheme VIvid
 autocmd InsertEnter,InsertLeave * set cul!
 aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
-
+aug polybarconfig_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/polybar/config set filetype=dosini
+aug end
+" Run xrdb whenever Xdefaults or Xresources are updated.
+autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
