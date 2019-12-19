@@ -15,7 +15,7 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+shift+w exec firefox
 
-bindsym $mod+d exec rofi -show run  
+bindsym $mod+d exec "rofi -show run"
 
 bindsym Print exec xfce4-screenshooter
 
@@ -148,11 +148,14 @@ gaps outer 0
 exec --no-startup-id "picom -b" 
 exec --no-startup-id xset r rate 150 35 # Set initial delay 300ms, repeat 35ms
 exec --no-startup-id "feh --bg-max ~/Pictures/Wallpapers/cp2.jpg --bg-fill ~/Pictures/Wallpapers/cp3.jpg --bg-fill ~/Pictures/Wallpapers/cp4.png"
-
+exec "~/.config/polybar/launch.sh"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id "dropbox"
 exec --no-startup-id "ntpd -qg"
 exec --no-startup-id "xrandr --output DVI-D-0 --mode 1920x1080 --rate 144"
+exec dunst
+exec mpd
+exec ranger
 
 bindsym XF86AudioRaiseVolume exec "amixer -c 2 set 'Com Speaker' 1dB+"
 bindsym XF86AudioLowerVolume exec "amixer -c 2 set 'Com Speaker' 1dB-"
