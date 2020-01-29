@@ -7,7 +7,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
 Plug 'mboughaba/i3config.vim'
 call plug#end()
-"==================SETTINGS====================
+"=====================SETTINGS=======================
 
 set nocompatible
 
@@ -48,8 +48,11 @@ set modifiable
 
 "enable loading the plugin files for specific file types
 filetype plugin on
+
 "turn syntax highlighting on 
 syntax on
+
+"set colorscheme
 colorscheme afterglow
 
 
@@ -64,6 +67,7 @@ inoremap <c-u> <esc>viwU
 "visually select a word, and uppercase it.
 nnoremap <c-u> viwU
 
+"in insert mode, press jk to exit to normal mode.
 inoremap jk <esc>
 
 "maps the leader key to space.
@@ -119,11 +123,14 @@ aug NERDTree_init
     au vimenter * NERDTree
 aug end
 
+"either on creating new ./polybar/config file or reading existing file in, set
+"its filetype to i3config 
 aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
 
+"same as above, except set ft to dosini
 aug polybarconfig_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/polybar/config set filetype=dosini
@@ -143,9 +150,13 @@ aug auto_close
     au Filetype scheme inoremap ( ()<left>
 aug end
 
+"inoreabbrev stands for insert mode, no recursively defined mappings,
+"abbreviation. 
 aug snippets
     au!
+    "generate (cond ()) and move the cursor two places left.
     au FileType scheme :inoreabbrev <buffer> condd (cond ())<left><left>
+    "generate (if ()) and move cursor two places left.
     au FileType scheme :inoreabbrev <buffer> iff (if ())<left><left>
 aug end
 
