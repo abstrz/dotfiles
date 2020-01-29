@@ -123,14 +123,14 @@ aug NERDTree_init
     au vimenter * NERDTree
 aug end
 
-"either on creating new ./polybar/config file or reading existing file in, set
+"either on creating new i3 config file or reading existing file in, set
 "its filetype to i3config 
 aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
 
-"same as above, except set ft to dosini
+"same as i3config_ft_detection explanation, except for polybar config file.
 aug polybarconfig_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/polybar/config set filetype=dosini
