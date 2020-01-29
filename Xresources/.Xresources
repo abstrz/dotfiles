@@ -1,0 +1,83 @@
+!xrdb -merge ~/.Xresources
+
+
+
+!=====================URXVT Settings=======================
+!font-stuff
+URxvt.font: xft:Iosevka:size=12, Iosevka Medium:style=Medium Italic, Italic
+URxvt.boldFont: xft:Iosevka:size=12,style=Bold
+
+!removes scrollbar
+URxvt.scrollBar:false
+
+!indent from windows border
+URxvt.internalBorder: 5
+
+!sets terminal buffer size. 1000 lines saved, anything older cleared.
+URxvt.saveLines: 1000
+
+!enable scrolling with mouse wheel
+URxvt.scrollWithBuffer: true
+
+!set cursor color:
+URxvt.cursorColor: #C0C0C0
+
+!make cursor blink:
+URxvt.cursorBlink: 1
+
+!space between lines in pixels
+URxvt.lineSpace: 7
+
+!================X system settings================
+!Dots per inch value:
+Xft.dpi: 96
+
+!font smoothing:
+Xft.antialias: true
+
+!font hinting (increases edge contrast)
+Xft.hinting: true
+
+!font alignment on the grid:
+Xft.hintstyle: hintfull
+
+!set RGB color model:
+Xft.rgba: rgb
+!=============Color theme===============
+! special
+*foreground:   #d7d0c7
+*URxvt.background:   #151515
+*cursorColor:  #d7d0c7
+
+! black
+*color0:       #101010
+*color8:       #404040
+
+! red
+*color1:       #e84f4f
+*color9:       #d23d3d
+
+! green
+*color2:       #b8d68c
+*color10:      #a0cf5d
+
+! yellow
+*color3:       #e1aa5d
+*color11:      #f39d21
+
+! blue
+*color4:       #7dc1cf
+*color12:      #4e9fb1
+
+! magenta
+*color5:       #9b64fb
+*color13:      #8542ff
+
+! cyan
+*color6:       #6d878d
+*color14:      #42717b
+
+! white
+*color7:       #dddddd
+*color15:      #dddddd
+

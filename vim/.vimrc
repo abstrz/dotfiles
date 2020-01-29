@@ -4,7 +4,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
@@ -14,9 +13,6 @@ call plug#end()
 "=============SETTINGS=================
 
 set nocompatible
-
-"sets number of lines vim checks for variable initializations. 
-set modelines=0
 
 set tabstop=4
 set shiftwidth=4
@@ -56,47 +52,59 @@ set modifiable
 
 
 "=============MAPPINGS================
-nmap - ddp
-nmap _ ddkP
+
+"escape, delete line, go back into insert mode
+inoremap <c-d> <esc>ddi
+
+"escape, visually select word, uppercase it.
+inoremap <c-u> <esc>viwU
+
+"visually select a word, and uppercase it.
+nnoremap <c-u> viwU
+
+inoremap jk <esc>
+
+
 "maps the leader key to space.
 let mapleader = ' '
 nnoremap <leader><leader> :noh<cr>
 nnoremap <leader>b :buffers<cr>
-nnoremap <leader>1 :b1<cr>
-nnoremap <leader>2 :b2<cr>
-nnoremap <leader>3 :b3<cr>
-nnoremap <leader>4 :b4<cr>
-nnoremap <leader>5 :b5<cr>
-nnoremap <leader>6 :b6<cr>
-nnoremap <leader>7 :b7<cr>
-nnoremap <leader>8 :b8<cr>
-nnoremap <leader>9 :b9<cr>
+
+"opens vimrc file in v split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+"sources vimrc file
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 
-
-
-
-"nnoremap <tab> %
-"vnoremap <tab> %
-
-"make duplication of buffer, and move to it.
+"Note to self: nnore stands for normal more, no recursion,
 nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 nnoremap <leader>h <C-w>H
 nnoremap <leader>j <C-w>J
 nnoremap <leader>k <C-w>K
 nnoremap <leader>l <C-w>L
 nnoremap <leader>< <C-w><
-nnoremap <leader>> <C-w>>
-filetype plugin on
-syntax on
-autocmd vimenter * NERDTree
-colorscheme VIvid
-autocmd InsertEnter,InsertLeave * set cul!
 
+
+"enable loading the plugin files for specific file types
+filetype plugin on
+
+"turn syntax highlighting on 
+syntax on
+
+"syntax of autocmd:
+"autocmd <event> <pattern> <action>
+
+"if you enter vim, with any file, you run nerd tree
+autocmd vimenter * NERDTree
+
+colorscheme afterglow
+
+"note: au stands for auto command and aug stands for auto command group
 aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
@@ -107,6 +115,21 @@ aug polybarconfig_ft_detection
   au BufNewFile,BufRead ~/.config/polybar/config set filetype=dosini
 aug end
 
-" Run xrdb whenever Xdefaults or Xresources are updated.
 
+"handling comments by filetype
+autocmd FileType vim noremap <buffer> <leader>c I"<esc>
+autocmd Filetype scheme noremap <buffer> <leader>c I;;<esc>
+autocmd Filetype sh noremap <buffer> <leader>c I#<esc>
+
+"auto-close parentheses
+autocmd Filetype scheme inoremap ( ()<left>
+
+"snippets
+autocmd FileType scheme :inoreabbrev <buffer> condd (cond ())<left><left>
+autocmd FileType scheme :inoreabbrev <buffer> iff (if ())<left><left>
+
+
+
+" Run xrdb whenever Xdefaults or Xresources are updated.
 autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+
