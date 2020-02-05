@@ -1,7 +1,6 @@
 "=================PLUGIN STUFF===================
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
@@ -68,7 +67,7 @@ inoremap <c-u> <esc>viwU
 nnoremap <c-u> viwU
 
 "in insert mode, press jk to exit to normal mode.
-inoremap jk <esc>
+inoremap jk <esc><right>
 
 "maps the leader key to space.
 let mapleader = ' '
@@ -117,11 +116,6 @@ onoremap il( :<c-u>normal! F(vi(<cr>
 "       au stands for auto command and aug stands for auto command group
 "       au! clears clears group
 
-"if you enter vim, with any file, you run nerd tree
-aug NERDTree_init
-    au!
-    au vimenter * NERDTree
-aug end
 
 "either on creating new i3 config file or reading existing file in, set
 "its filetype to i3config 
@@ -142,6 +136,7 @@ aug comment_binding
     au FileType vim noremap <buffer> <leader>c I"<esc>
     au Filetype scheme noremap <buffer> <leader>c I;;<esc>
     au Filetype sh noremap <buffer> <leader>c I#<esc>
+    au Filetype c noremap <buffer> <leader>c I//<esc>
 aug end
 
 "auto-close parentheses,brackets(not yet done), and so on...

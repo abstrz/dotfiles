@@ -8,7 +8,7 @@ font pango:Noto Sans 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -147,6 +147,7 @@ gaps outer 0
 #startup
 exec --no-startup-id "picom -b" 
 exec --no-startup-id xset r rate 150 35 # Set initial delay 300ms, repeat 35ms
+exec --no-startup-id "xrandr --auto --output HDMI-A-3 --right-of DVI-D-0"
 exec --no-startup-id "feh --bg-max ~/Pictures/Wallpapers/cp2.jpg --bg-fill ~/Pictures/Wallpapers/cp3.jpg --bg-fill ~/Pictures/Wallpapers/cp4.png"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id "dropbox"
