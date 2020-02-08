@@ -67,13 +67,11 @@ inoremap <c-u> <esc>viwU
 nnoremap <c-u> viwU
 
 "in insert mode, press jk to exit to normal mode.
-inoremap jk <esc><right>
-
+inoremap asd <esc><right>
 "maps the leader key to space.
 let mapleader = ' '
 nnoremap <leader><leader> :noh<cr>
 nnoremap <leader>b :buffers<cr>
-
 "opens vimrc file in v split
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
@@ -92,6 +90,13 @@ nnoremap <leader>k <C-w>K
 nnoremap <leader>l <C-w>L
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+
+"yank to system clipboard
+nnoremap <c-c> "+y
+vnoremap <c-c> "+y
+
+nnoremap <c-p> "+p
+vnoremap <c-c> "+y
 
 "o stands for operator pending (a motion). 
 "It behaves like: 

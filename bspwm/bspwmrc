@@ -4,11 +4,15 @@ sxhkd &
 
 
 #monitors setup
-bspc wm -O DVI-D-0 HDMI-A-3 HDMI-A-4
 bspc monitor DVI-D-0 -d I II III IV 
 bspc monitor HDMI-A-3 -d V VI VII
 bspc monitor HDMI-A-4 -d VIII IX X
 xrandr --output DisplayPort-1 --off --output DisplayPort-2 --off --output HDMI-A-3 --mode 1920x1080 --pos 3280x0 --rotate normal --output HDMI-A-4 --mode 1360x768 --pos 0x0 --rotate normal --output DVI-D-0 --primary --mode 1920x1080 --pos 1360x0 --rotate normal --output HDMI-1-1 --off --output HDMI-1-2 --off --output DP-1-1 --off --output HDMI-1-3 --off  
+
+
+#rules
+
+bspc rule -a Zathura desktop=^5 state=tiled
 
 
 bspc config border_width         2
@@ -31,7 +35,7 @@ ntpd -qg &
 dunst &
 mpd &
 ranger &
-
+bspc wm -O DVI-D-0 HDMI-A-3 HDMI-A-4 &
 
 
 
