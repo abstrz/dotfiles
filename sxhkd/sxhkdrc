@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	dmenu_run
+	dmenu_run -h 30 -nb black -nf pink -sb magenta -sf black
 
 # make sxhkd reload its configuration files:
 super + Escape

@@ -8,7 +8,7 @@ ZSH=/usr/share/oh-my-zsh/
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="darkblood"
+ZSH_THEME="kolo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -110,6 +110,14 @@ PERL_LOCAL_LIB_ROOT="/home/david/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_R
 PERL_MB_OPT="--install_base \"/home/david/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/david/perl5"; export PERL_MM_OPT;
 
-source .bash-script-init/monitor/bashscript.sh
+#scripts
+source ~/tools/scripts/defs.sh
+source ~/.profile
+source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source ~/.scripts/bash-scripts/shortcuts.sh
+#environmental variables
+export EDITOR=vim
+export BROWSER=firefox
+export beats_id=DC:D3:A2:C4:41:1F
+export _JAVA_AWT_WM_NONREPARENTING=1
+export NNN_USE_EDITOR=1
