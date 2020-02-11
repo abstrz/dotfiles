@@ -29,7 +29,7 @@ xsetroot -cursor_name left_ptr
 ~/dotfiles/polybar/launch.sh &
 picom -b &
 xset r rate 150 35 &
-feh --bg-max ~/Pictures/Wallpapers/r48ej0qzgef41.jpg --bg-fill ~/Pictures/Wallpapers/tc8x8nx330g41.jpg --bg-fill ~/Pictures/Wallpapers/zgp0egrv9hf41.jpg &
+feh --bg-max ~/Pictures/Wallpapers/r48ej0qzgef41.jpg --bg-fill ~/Pictures/Wallpapers/3137322.jpg --bg-fill ~/Pictures/Wallpapers/zgp0egrv9hf41.jpg &
 dropbox &
 ntpd -qg &
 dunst &

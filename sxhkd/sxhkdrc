@@ -6,9 +6,16 @@
 super + Return
     st
 
+XF86AudioRaiseVolume
+    amixer set Master 1%+
+XF86AudioLowerVolume
+    amixer set Master 1%-
+XF86AudioMute
+    amixer set Master toggle
+
 # program launcher
 super + @space
-	dmenu_run -h 30 -nb black -nf white -sb "#BBBBDD" -sf black
+	dmenu_run -h 30 -nb black -nf white -sb "#75A4CD" -sf black
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -119,3 +126,4 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+

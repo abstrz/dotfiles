@@ -166,3 +166,12 @@ aug xrdb_refresh
     au BufWritePost *Xresources,*Xdefaults !xrdb %
 aug end
 
+
+"make cursor same as in zsh shell.
+let &t_SI = "\e[6 q" "steady bar
+let &t_EI = "\e[2 q" "steady block
+
+augroup handle_cursor
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
