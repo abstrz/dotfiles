@@ -1,5 +1,13 @@
-source ~/.profile
+source ~/.zprofile
 
+
+#Enabling Portage completions and Gentoo prompt for zsh
+autoload -U compinit promptinit 
+compinit
+promptinit; prompt gentoo
+
+#Enable a cache for the completions add
+zstyle ':completion::complete:*' use-cache 1
 
 export EDITOR=vim
 export TERMINAL="st"
@@ -7,8 +15,7 @@ export BROWSER=firefox
 export READER="zathura"
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
-
+ZSH=~/.oh-my-zsh
 ZSH_THEME="kolo"
 
 
@@ -78,3 +85,5 @@ export NNN_USE_EDITOR=1
 #plugins
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 plugins=(git)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

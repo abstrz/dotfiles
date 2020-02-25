@@ -1,5 +1,5 @@
 "=================PLUGIN STUFF===================
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/autoload')
 
 Plug 'Valloric/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
