@@ -7,11 +7,11 @@ super + Return
     st
 
 XF86AudioRaiseVolume
-    amixer set Master 1%+
+    ~/pulsemixer/pulsemixer --change-volume 5
 XF86AudioLowerVolume
-    amixer set Master 1%-
+    ~/pulsemixer/pulsemixer --change-volume -5
 XF86AudioMute
-    amixer set Master toggle
+   ~/pulsemixer/pulsemixer --toggle-mute
 
 # program launcher
 super + @space

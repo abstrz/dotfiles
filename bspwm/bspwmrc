@@ -11,8 +11,7 @@ xrandr --output DisplayPort-1 --off --output DisplayPort-2 --off --output HDMI-A
 
 
 #rules
-
-bspc rule -a Zathura desktop=^5 state=tiled
+bspc rule -a Zathura desktop=^5 state=tiled focused=on
 
 
 bspc config border_width         2
@@ -29,9 +28,9 @@ xsetroot -cursor_name left_ptr
 ~/dotfiles/polybar/launch.sh &
 picom -b &
 xset r rate 150 35 &
-feh --bg-max ~/Pictures/Wallpapers/r48ej0qzgef41.jpg --bg-fill ~/Pictures/Wallpapers/3137322.jpg --bg-fill ~/Pictures/Wallpapers/zgp0egrv9hf41.jpg &
-dropbox &
+feh --bg-max ~/Pictures/Wallpapers/1y39b3mhnsk41.png --bg-fill ~/Pictures/Wallpapers/GhYwYAr.jpg --bg-fill ~/Pictures/Wallpapers/6pBtJDA.jpg &
 ntpd -qg &
+dropbox &
 dunst &
 ranger &
 bspc wm -O DVI-D-0 HDMI-A-3 HDMI-A-4 &

@@ -2,31 +2,6 @@
 
 
 
-!=====================URXVT Settings=======================
-!font-stuff
-URxvt.font: xft:Iosevka:size=12, Iosevka Medium:style=Medium Italic, Italic
-URxvt.boldFont: xft:Iosevka:size=12,style=Bold
-
-!removes scrollbar
-URxvt.scrollBar:false
-
-!indent from windows border
-URxvt.internalBorder: 5
-
-!sets terminal buffer size. 1000 lines saved, anything older cleared.
-URxvt.saveLines: 1000
-
-!enable scrolling with mouse wheel
-URxvt.scrollWithBuffer: true
-
-!set cursor color:
-URxvt.cursorColor: #C0C0C0
-
-!make cursor blink:
-URxvt.cursorBlink: 1
-
-!space between lines in pixels
-URxvt.lineSpace: 7
 
 !================X system settings================
 !Dots per inch value:
@@ -46,8 +21,6 @@ Xft.rgba: rgb
 !=============Color theme===============
 ! special
 *foreground:   #d7d0c7
-*URxvt.background:   #151515
-*cursorColor:  #d7d0c7
 
 ! black
 *color0:       #101010

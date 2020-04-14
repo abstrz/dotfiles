@@ -1,6 +1,6 @@
 ### Display ###
 [global]
-font = Cantarell 10
+font = Iosevka 10
 
 # Allow a small subset of html markup:
 #   <b>bold</b>

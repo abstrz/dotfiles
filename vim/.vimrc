@@ -5,6 +5,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
 Plug 'mboughaba/i3config.vim'
+Plug 'neoclide/coc.nvim', {'branch' : 'release'}
+Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 "=====================SETTINGS=======================
 
@@ -44,6 +46,12 @@ set wrap
 set textwidth=79
 set formatoptions=qrn1
 set modifiable 
+
+"Clean up clutter in home dir.
+set swapfile
+set dir=~/tmp
+
+
 
 "enable loading the plugin files for specific file types
 filetype plugin on
@@ -98,29 +106,8 @@ vnoremap <c-c> "+y
 nnoremap <c-p> "+p
 vnoremap <c-c> "+y
 
-"o stands for operator pending (a motion). 
-"It behaves like: 
-"1. start at cursor position, 
-"2. enter visual mode
-"3. do command
-"Thus in the following, i( behave as it would in visual mode,
-"where it selects all text inside parens.
-onoremap p i(
-"find next parenthesis, select all text inside.
-onoremap in( :<c-u>normal! f(vi(<cr>
-"find last parenthesis, select all text inside.
-onoremap il( :<c-u>normal! F(vi(<cr>
-
-"Note If operator-pending mapping ends with some text visually selected, Vim
-"       will operate on that text
-"     Otherwise, Vim will operate on text between original cursor position and
-"       new one. 
-
-"===================Auto Commands====================
-"notes: autocmd syntax: autocmd <event> <pattern> <action>
-"       au stands for auto command and aug stands for auto command group
-"       au! clears clears group
-
+"copy to @q by pressing Q in normal mode.
+noremap Q @q
 
 "either on creating new i3 config file or reading existing file in, set
 "its filetype to i3config 
