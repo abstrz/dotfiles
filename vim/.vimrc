@@ -9,6 +9,10 @@ Plug 'neoclide/coc.nvim', {'branch' : 'release'}
 Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 "=====================SETTINGS=======================
+if empty(glob('~/.vim/tmp'))
+    silent !doas mkdir -p ~/.vim/tmp
+endif
+set directory=$HOME/.vim/tmp
 
 set nocompatible
 
@@ -112,14 +116,14 @@ noremap Q @q
 "either on creating new i3 config file or reading existing file in, set
 "its filetype to i3config 
 aug i3config_ft_detection
-  au!
-  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+    au!
+    au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
 
 "same as i3config_ft_detection explanation, except for polybar config file.
 aug polybarconfig_ft_detection
-  au!
-  au BufNewFile,BufRead ~/.config/polybar/config set filetype=dosini
+    au!
+    au BufNewFile,BufRead ~/.config/polybar/config set filetype=dosini
 aug end
 
 "handling comments by filetype
@@ -159,6 +163,6 @@ let &t_SI = "\e[6 q" "steady bar
 let &t_EI = "\e[2 q" "steady block
 
 augroup handle_cursor
-au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
+    au!
+    autocmd VimEnter * silent !echo -ne "\e[2 q"
 augroup END
