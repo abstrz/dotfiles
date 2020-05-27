@@ -1,6 +1,5 @@
 source ~/.zprofile
 
-
 #Enabling Portage completions and Gentoo prompt for zsh
 autoload -U compinit promptinit 
 compinit

@@ -7,12 +7,13 @@ Plug 'lervag/vimtex'
 Plug 'mboughaba/i3config.vim'
 Plug 'neoclide/coc.nvim', {'branch' : 'release'}
 Plug 'neovimhaskell/haskell-vim'
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 "=====================SETTINGS=======================
-if empty(glob('~/.vim/tmp'))
-    silent !doas mkdir -p ~/.vim/tmp
-endif
-set directory=$HOME/.vim/tmp
+""Clean up clutter in home dir.
+set swapfile
 
 set nocompatible
 
@@ -51,9 +52,6 @@ set textwidth=79
 set formatoptions=qrn1
 set modifiable 
 
-"Clean up clutter in home dir.
-set swapfile
-set dir=~/tmp
 
 
 
@@ -62,10 +60,6 @@ filetype plugin on
 
 "turn syntax highlighting on 
 syntax on
-
-"set colorscheme
-colorscheme afterglow
-
 
 "===================MAPPINGS====================
 
@@ -112,6 +106,8 @@ vnoremap <c-c> "+y
 
 "copy to @q by pressing Q in normal mode.
 noremap Q @q
+
+autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
 
 "either on creating new i3 config file or reading existing file in, set
 "its filetype to i3config 
@@ -161,6 +157,7 @@ aug end
 "make cursor same as in zsh shell.
 let &t_SI = "\e[6 q" "steady bar
 let &t_EI = "\e[2 q" "steady block
+
 
 augroup handle_cursor
     au!
