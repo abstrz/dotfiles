@@ -4,8 +4,6 @@ userresources=$HOME/.Xresources
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
-
-
 #from siji font install
 xset +fp ~/.local/share/fonts
 xset fp rehash

@@ -100,9 +100,14 @@ nnoremap <leader>q :q<cr>
 "yank to system clipboard
 nnoremap <c-c> "+y
 vnoremap <c-c> "+y
+inoremap <c-c> "+y
+
+"cut to system clipboard
+nnoremap <c-x> "+dd 
+vnoremap <c-x> "+dd
+inoremap <c-x> "+dd
 
 nnoremap <c-p> "+p
-vnoremap <c-c> "+y
 
 "copy to @q by pressing Q in normal mode.
 noremap Q @q
