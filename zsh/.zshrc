@@ -1,10 +1,5 @@
 source ~/.zprofile
 
-#Enabling Portage completions and Gentoo prompt for zsh
-autoload -U compinit promptinit 
-compinit
-promptinit; prompt gentoo
-
 #Enable a cache for the completions add
 zstyle ':completion::complete:*' use-cache 1
 
