@@ -20,6 +20,12 @@ function Keys()
         nnoremap <leader>q :q! <CR>
         nnoremap <leader>v :vsp <CR>
         nnoremap <leader>h :sp <CR>
+        nnoremap <C-j> <C-w><DOWN>
+        nnoremap <C-k> <C-w><UP>
+        nnoremap <C-h> <C-w><LEFT>
+        nnoremap <C-l> <C-w><RIGHT>
+        nnoremap <leader>- <C-w>-
+        nnoremap <leader>= <C-w>+
 endfunction
 function Autocmds()
         augroup remember_folds
