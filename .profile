@@ -1,1 +1,2 @@
-TZ='America/Toronto'; export TZ
+
+jZ='America/Toronto'; export TZ

@@ -70,14 +70,15 @@ PERL_MB_OPT="--install_base \"/home/david/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/david/perl5"; export PERL_MM_OPT;
 
 #scripts
-source ~/scripts/functions.sh
+source ~/shell-functions/main.sh
 
 export beats_id=DC:D3:A2:C4:41:1F
 export _JAVA_AWT_WM_NONREPARENTING=1
 export NNN_USE_EDITOR=1
 
 #plugins
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.kb_alias
+[ -f "/home/david/.ghcup/env" ] && source "/home/david/.ghcup/env" # ghcup-env
