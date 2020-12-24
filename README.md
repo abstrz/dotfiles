@@ -1,4 +1,4 @@
-A collection of my dotfiles! 
+*A simple script to manage your dotfiles.*
 
 To add a new dotfile:
 
