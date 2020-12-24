@@ -8,7 +8,7 @@ error_symbol = "[X](bold red) "
 vicmd_symbol = "[V](bold green) "
 
 [line_break]
-disabled = false
+disabled = true 
 [cmd_duration]
 min_time = 500
 format = "underwent [$duration](bold yellow)"
