@@ -6,25 +6,21 @@ handle(){
         file=`basename $file_path`
         if [ "$file" != "data" ]; then 
           display_name="`basename $folder`/`basename $file_path`"
-          echo "Do you want to link $display_name y/n (n is default, q to quit)?"
-          read skip
-          if [ "$skip" == "q" ]; then 
-            echo "Quitting..."
-            exit 1
-          fi
-          if [ "$skip" == "y" ]; then 
-            if [ "$1" == "-sf" ] || [ ! -e "$target_path/$file" ]; then 
+          if [ "$1" == "-sf" ] || [ ! -e "$target_path/$file" ]; then 
+            echo "Do you want to link $display_name y/n (n is default, q to quit)?"
+            read option
+            if [ "$option" == "q" ]; then 
+              echo "Quitting..."
+              exit 1
+            fi
+            if [ "$option" == "y" ]; then 
               if [ ! -d "$target_path" ]; then
                 echo "Creating $target_path..." &&
                   mkdir $target_path > /dev/null 
               fi
               echo "Symbolically linking $display_name..."  &&
                 doas ln $1 $file_path $target_path > /dev/null
-                            else 
-                              echo "$target_path/$file exists. Skipping..."
             fi
-          else 
-            echo "Skipping..."
           fi
         fi
       done
