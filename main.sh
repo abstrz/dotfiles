@@ -9,7 +9,8 @@ handle(){
           echo "Do you want to link $display_name y/n (n is default, q to quit)?"
           read skip
           if [ "$skip" == "q" ]; then 
-            exit 1;
+            echo "Quitting..."
+            exit 1
           fi
           if [ "$skip" == "y" ]; then 
             if [ "$1" == "-sf" ] || [ ! -e "$target_path/$file" ]; then 
