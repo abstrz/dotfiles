@@ -1,13 +1,16 @@
 handle(){
   for folder in $PWD/src/*; do
-    source $folder/init.sh &&
+    source $folder/data &&
       shopt -s dotglob     &&
       for file_path in $folder/*; do 
         file=`basename $file_path`
-        if [ "$file" != "init.sh" ]; then 
+        if [ "$file" != "data" ]; then 
           display_name="`basename $folder`/`basename $file_path`"
-          echo "Do you want to link $display_name (y/n, n is default)?"
+          echo "Do you want to link $display_name y/n (n is default, q to quit)?"
           read skip
+          if [ "$skip" == "q" ]; then 
+            exit 1;
+          fi
           if [ "$skip" == "y" ]; then 
             if [ "$1" == "-sf" ] || [ ! -e "$target_path/$file" ]; then 
               if [ ! -d "$target_path" ]; then
