@@ -1,3 +1,3 @@
-target_path=/home/`whoami`/.config/starship
+target_path=/home/`whoami`/.config/
 
 
