@@ -11,7 +11,7 @@ handle(){
             read option
             if [ "$option" == "q" ]; then 
               echo "Quitting..."
-              exit 1
+              return -1
             fi
             if [ "$option" == "y" ]; then 
               if [ ! -d "$target_path" ]; then
@@ -26,25 +26,24 @@ handle(){
       done
     done
   }
-main(){
+dotfiles(){
   echo "Overwrite existing dotfiles? (y/n, or q to quit)"
   read input 
 
   if [[ $input == q || $input == quit || $input == Q || $input == Quit ]]; then 
     echo "Quitting..."
-    exit -1 
+    return -1 
   fi 
   if [[ $input == y || $input == yes || $input == Y || $input == Yes ]]; then 
     handle "-sf"
-    exit 1
+    return 1
   elif [[ $input == n || $input == no || $input == N || $input == No ]]; then 
     handle "-s"
-    exit 1
+    return 1
   else
     echo "Sorry, unrecognized option" 
-    exit 1
+    return 1
   fi
 }
 
-main
 
