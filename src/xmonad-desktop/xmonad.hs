@@ -149,7 +149,7 @@ myKeys conf @ XConfig {XMonad.modMask = modm} = M.fromList $
 
 
     -- launch vim
-    , ((modm,               xK_apostrophe ), spawn "alacritty -e vim")
+    , ((modm,               xK_apostrophe ), spawn "alacritty -e nvim")
 
     -- launch nnn
     , ((modm,               xK_d ), spawn "alacritty -e nnn")
@@ -308,7 +308,7 @@ myStartupHook = do
   spawnOnce "nitrogen --restore"
   spawnOnce "bluetoothctl power on"
   spawnOnce "steam-tweaks"
-
+  spawnOnce "xinput disable \"Sony Computer Entertainment Wireless Controller Touchpad\""
 main :: IO () 
 main = do
   xmproc0 <- spawnPipe "xmobar -x 2 ~/.xmonad/xmobar/.xmobarrc0"

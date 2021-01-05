@@ -124,6 +124,7 @@ function Commands()
   " Add `:OR` command for organize imports of the current buffer.
   command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 endfunction
+
 function Calls()
   call Plugins()
   call Options()

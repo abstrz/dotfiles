@@ -14,7 +14,7 @@
 
 
 repository hackage.haskell.org
-  url: http://hackage.haskell.org/
+  url: https://hackage.haskell.org/
   -- secure: True
   -- root-keys:
   -- key-threshold: 3
@@ -26,10 +26,10 @@ repository hackage.haskell.org
 -- http-transport:
 -- nix: False
 -- local-no-index-repo:
-   remote-repo-cache: /home/david/.cabal/packages
+remote-repo-cache: /home/david/.cabal/packages
 -- local-repo:
 -- logs-dir: /home/david/.cabal/logs
-   world-file: /home/david/.cabal/world
+world-file: /home/david/.cabal/world
 -- store-dir:
 -- verbose: 1
 -- compiler: ghc
@@ -38,13 +38,13 @@ repository hackage.haskell.org
 -- with-hc-pkg:
 -- program-prefix: 
 -- program-suffix: 
-   library-vanilla: False
--- library-profiling:
+-- library-vanilla: True
+library-profiling: True 
 -- shared: True 
 -- static:
 -- executable-dynamic: True
 -- executable-static: False
--- profiling:
+profiling: True 
 -- executable-profiling:
 -- profiling-detail:
 -- library-profiling-detail:
@@ -81,7 +81,7 @@ extra-prog-path: /home/david/.cabal/bin
 -- allow-older: False
 -- allow-newer: False
 -- write-ghc-environment-files:
--- documentation: False
+documentation: True
 -- doc-index-file: $datadir/doc/$arch-$os-$compiler/index.html
 -- target-package-db:
 -- max-backjumps: 4000
@@ -215,7 +215,8 @@ program-default-options
   -- cpphs-options:
   -- doctest-options:
   -- gcc-options:
-     ghc-options: -dynamic 
+ 
+ ghc-options: -dynamic 
   -- ghc-pkg-options:
   -- ghcjs-options:
   -- ghcjs-pkg-options:
