@@ -18,3 +18,4 @@ set shortmess+=c
 setlocal formatprg =hindent
 
 autocmd InsertEnter,InsertLeave * set cul!
+
