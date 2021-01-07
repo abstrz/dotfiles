@@ -1,1 +1,1 @@
-# My dotfiles, and a script to automate symlinking.
+*My dotfiles, and a script to automate symlinking.*
