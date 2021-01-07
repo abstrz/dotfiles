@@ -7,8 +7,9 @@ nnoremap <leader>v  :vsp <CR>
 nnoremap <leader>o  :e ~/.config/nvim/init.vim <CR>
 nnoremap <leader>op :e ~/.config/nvim/src/Plugins.vim <CR>
 nnoremap <leader>oo :e ~/.config/nvim/src/Options.vim <CR>
-nnoremap <leader>opc :e ~/.config/nvim/src/CocSettings.vim <CR>
-nnoremap <leader>oph :e ~/.config/nvim/src/Haskell.vim <CR>
+nnoremap <leader>oc :e ~/.config/nvim/src/CocSettings.vim <CR>
+nnoremap <leader>occ :CocConfig <CR>
+nnoremap <leader>oh :e ~/.config/nvim/src/Haskell.vim <CR>
 nnoremap <leader>ok :e ~/.config/nvim/src/Keybindings.vim <CR>
 nnoremap <leader>os :e ~/.config/nvim/src/Scripts.vim <CR>
 nnoremap <C-j> <C-w><DOWN>

@@ -1,5 +1,5 @@
 handle(){
-  for folder in $HOME/Scripts/dotfiles/src/*; do
+  for folder in $HOME/dotfiles/src/*; do
     source $folder/data &&
       setopt globdots   &&
       for file_path in $folder/*; do 
