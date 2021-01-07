@@ -1,10 +1,16 @@
-nnoremap <leader>b :buffers<CR>:buffer<Space>
-nnoremap <leader>e :NERDTreeToggle <CR>
-nnoremap <leader>s :source ~/.config/nvim/init.vim <CR>
-nnoremap <leader>w :w! <CR>
-nnoremap <leader>q :q! <CR>
-nnoremap <leader>v :vsp <CR>
-nnoremap <leader>o :e ~/.config/nvim/init.vim <CR>
+nnoremap <leader>b  :buffers<CR>:buffer<Space>
+nnoremap <leader>e  :NERDTreeToggle <CR>
+nnoremap <leader>s  :source ~/.config/nvim/init.vim <CR>
+nnoremap <leader>w  :w! <CR>
+nnoremap <leader>q  :q! <CR>
+nnoremap <leader>v  :vsp <CR>
+nnoremap <leader>o  :e ~/.config/nvim/init.vim <CR>
+nnoremap <leader>op :e ~/.config/nvim/src/Plugins.vim <CR>
+nnoremap <leader>oo :e ~/.config/nvim/src/Options.vim <CR>
+nnoremap <leader>opc :e ~/.config/nvim/src/CocSettings.vim <CR>
+nnoremap <leader>oph :e ~/.config/nvim/src/Haskell.vim <CR>
+nnoremap <leader>ok :e ~/.config/nvim/src/Keybindings.vim <CR>
+nnoremap <leader>os :e ~/.config/nvim/src/Scripts.vim <CR>
 nnoremap <C-j> <C-w><DOWN>
 nnoremap <C-k> <C-w><UP>
 nnoremap <C-h> <C-w><LEFT>
@@ -22,6 +28,7 @@ imap asd <Esc>ll
 " Use tab to trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+"
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
