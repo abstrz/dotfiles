@@ -34,32 +34,79 @@
     (setq initial-frame-alist '( (tool-bar-lines . 0))))
   (setq default-frame-alist initial-frame-alist))
 
+(defun keys ()
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+
+  
 (defun hooks ()
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
   (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'latex-mode-hook 'prettify-symbols-mode)
   (add-hook 'haskell-literate-mode-hook #'lsp))
 
 (defun misc-options ()
   (setq inhibit-startup-screen t)
   (ac-config-default)
+
   (show-paren-mode 1)
   (menu-bar-mode -1)
-  (toggle-scroll-bar -1)
+;;  (toggle-scroll-bar -1)
   (tool-bar-mode -1)
   (projectile-mode +1)
   (helm-mode 1)
   (desktop-save-mode 1)
   ;;Scroll one line at a time
-  (setq scroll-step 1)
-  )
+  (setq scroll-step 1))
 
 (pkg-init)
 (install-packages '(multiple-cursors magit haskell-mode lsp-mode lsp-ui lsp-haskell racket-mode helm projectile ibuffer-projectile auto-complete org-bullets tablist))
 (graphics)
+(keys)
 (hooks)
 (linum-init)
 (misc-options)
+
+
+;;workouts:
+(defvar back
+  '("bed-rows" "kettlebell-rows" "kettlebell-deadlifts" "floor-swims"))
+(defvar biceps
+  '("kettlebell-curls"))
+(defvar chest
+  '("kettlebell-press" "pushups" "overhead-thing" "closegrip-press"))
+(defvar triceps
+  '("kettlebell-extensions"))
+(defvar shoulders
+  '("kettlebell-shoulder-press" "swings" "cleans"))
+(defvar core
+  '("crunches"))
+(defun insert-helper (L)
+  (unless (null L)
+    (progn (insert "*** " (car L) ": \n")
+	   (insert-helper (cdr L)))))
+
+
+(defun exercises (G1 E1 G2 E2)
+  (save-excursion 
+    (insert "* " (format-time-string "%Y-%m-%d") "\n")
+    (insert "** " G1 "\n")
+    (insert-helper E1)
+    (insert "** " G2 "\n")
+    (insert-helper E2)))
+(defun backBi ()
+  (interactive)
+  (exercises "Back" back "Biceps" biceps))
+(defun chestTri ()
+  (interactive)
+  (exercises "Chest" chest "Triceps" triceps))
+(defun shouldersCore ()
+  (interactive)
+  (exercises "Shoulders" shoulders "Core" core))
+
 
 ;; AUTO GENERATED 
 
