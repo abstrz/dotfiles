@@ -86,17 +86,27 @@
   '("crunches"))
 (defun insert-helper (L)
   (unless (null L)
-    (progn (insert "*** " (car L) ": \n")
+    (progn (insert (car L) ": \n")
 	   (insert-helper (cdr L)))))
+
+(defvar task_list
+  '("Take out trash" "Clean apartment" "Study" "Workout" "Yoga/meditation" "Call or message family and friends"))
+
+(defun tasks ()
+  (interactive)
+  (save-excursion
+    (insert "* Week of: " (format-time-string "%Y-%m-%d") " [/] \n")
+    (insert-helper (mapcar (lambda (x) (concat "** TODO " x)) task_list))))
+
 
 
 (defun exercises (G1 E1 G2 E2)
   (save-excursion 
     (insert "* " (format-time-string "%Y-%m-%d") "\n")
     (insert "** " G1 "\n")
-    (insert-helper E1)
+    (insert-helper (mapcar (lambda (x) (concat "*** " x)) E1))
     (insert "** " G2 "\n")
-    (insert-helper E2)))
+    (insert-helper (mapcar (lambda (x) (concat "*** " x)) E2))))
 (defun backBi ()
   (interactive)
   (exercises "Back" back "Biceps" biceps))
