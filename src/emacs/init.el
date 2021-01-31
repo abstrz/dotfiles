@@ -36,6 +36,7 @@
 
 (defun keys ()
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C-c C-k") 'copy-line)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
@@ -70,6 +71,58 @@
 (linum-init)
 (misc-options)
 
+;recursion should be eliminated here, but it's way easier to write this way, for now...
+(defun _future-date (date n)
+  (if (= n 0)
+      date
+    (let ((year (car date))
+	  (month (cadr date))
+	  (day (caddr date)))
+      (cond ((eq month 12)
+	     (if (eq day 31)
+		 (_future-date (list (+ year 1) 1 1) (- n 1))
+	       (_future-date (list year month (+ day 1)) (-n 1))))
+	    ((or (eq month 1) (eq month 3) (eq month 5) (eq month 7) (eq month 8) (eq month 10))
+	     (if (eq day 31)
+		 (_future-date (list year (+ month 1) 1) (- n 1))
+	       (_future-date (list year month (+ day 1)) (- n 1))))
+	    ((eq month 2)
+	     (if (eq day 28)
+		 (_future-date (list year (+ month 1) 1) (- n 1))
+	       (_future-date (list year month (+ day 1)) (- n 1))))
+	    ((or (eq month 4) (eq month 6) (eq month 9) (eq month 11))
+	     (if (eq day 30)
+		 (_future-date (list year (+ month 1) 1) (- n 1))
+	       (_future-date (list year month (+  1)) (- n 1))))))))
+
+;;wasted computation transforming string-to-number in lambda of mapcar in let body.
+(defun future-date (n)
+  (let* ((date_string (format-time-string "%Y-%m-%d"))
+	 (ds_list (split-string date_string "-"))
+	 (fd_as_number (_future-date (mapcar 'string-to-number ds_list) n))
+	 (fd_as_string (mapcar 'number-to-string fd_as_number)))
+    (apply 'concat
+		   (cons (car fd_as_string)
+			 (mapcar (lambda (x)
+				   (if (< (string-to-number x) 10)
+				       (concat "-0" x)
+				     (concat "-" x)))
+				 (cdr fd_as_string))))))
+
+(defun copy-line (arg)
+  (interactive "p")
+  (let ((beg (line-beginning-position))
+        (end (line-end-position arg)))
+    (when mark-active
+      (if (> (point) (mark))
+          (setq beg (save-excursion (goto-char (mark)) (line-beginning-position)))
+        (setq end (save-excursion (goto-char (mark)) (line-end-position)))))
+    (if (eq last-command 'copy-line)
+        (kill-append (buffer-substring beg end) (< end beg))
+      (kill-ring-save beg end)))
+  (kill-append "\n" nil)
+  (beginning-of-line (or (and arg (1+ arg)) 2))
+  (if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
 
 ;;workouts:
 (defvar back
@@ -81,32 +134,27 @@
 (defvar triceps
   '("kettlebell-extensions"))
 (defvar shoulders
-  '("kettlebell-shoulder-press" "swings" "cleans"))
+  '("kettlebell-shoulder-press" "swings" "cleans" "shrugs"))
 (defvar core
   '("crunches"))
-(defun insert-helper (L)
-  (unless (null L)
-    (progn (insert (car L) ": \n")
-	   (insert-helper (cdr L)))))
-
 (defvar task_list
   '("Take out trash" "Clean apartment" "Study" "Workout" "Yoga/meditation" "Call or message family and friends"))
 
-(defun tasks ()
-  (interactive)
-  (save-excursion
-    (insert "* Week of: " (format-time-string "%Y-%m-%d") " [/] \n")
-    (insert-helper (mapcar (lambda (x) (concat "** TODO " x)) task_list))))
-
-
+(defun insert-list (L)
+  (unless (null L)
+    (progn (insert (car L))
+	   (insert-list (cdr L)))))
 
 (defun exercises (G1 E1 G2 E2)
   (save-excursion 
     (insert "* " (format-time-string "%Y-%m-%d") "\n")
     (insert "** " G1 "\n")
-    (insert-helper (mapcar (lambda (x) (concat "*** " x)) E1))
+    (insert-list (mapcar (lambda (x) (concat "*** " x ": \n")) E1))
     (insert "** " G2 "\n")
-    (insert-helper (mapcar (lambda (x) (concat "*** " x)) E2))))
+    (insert-list (mapcar (lambda (x) (concat "*** " x ": \n")) E2))))
+
+
+
 (defun backBi ()
   (interactive)
   (exercises "Back" back "Biceps" biceps))
@@ -116,9 +164,14 @@
 (defun shouldersCore ()
   (interactive)
   (exercises "Shoulders" shoulders "Core" core))
-
+(defun tasks ()
+  (interactive)
+  (save-excursion
+    (insert "* Week of: " (format-time-string "%Y-%m-%d") " - " (future-date 7) " [/] \n")
+    (insert-list (mapcar (lambda (x) (concat "** TODO " x ": \n")) task_list))))
 
 ;; AUTO GENERATED 
+
 
 
 (custom-set-variables
