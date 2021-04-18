@@ -67,13 +67,15 @@ xmobarEscape = concatMap doubleLts
                where
                  doubleLts '<' = "<<"
                  doubleLts x = [x]
-             
+
+n_workSpaces :: Int
+n_workSpaces =9                               
 myWorkspaces :: [String]
 myWorkspaces = clickable . map xmobarEscape
-               $ [ ":term", ":text", ":editor", ":web", ":music", ":games"]
+               $ [show x | x<-[1..n_workSpaces]]
     where
       clickable l = [ "<action=xdotool key super+" ++ show n ++ "> " ++ ws ++ " </action>" |
-                      (i, ws) <- zip [1..7] l,
+                      (i, ws) <- zip [1..n_workSpaces] l,
                       let n = i ]
 
 
@@ -302,16 +304,18 @@ myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "~/Scripts/screens.sh"
   spawnOnce "picom -b &"
-  spawnOnce "xset r rate 150 35 &"
+  spawnOnce "xset r rate 150 50 &"
   spawnOnce "xinput --set-prop 10 'libinput Accel Profile Enabled' 0, 1"
   spawnOnce "xsetroot -cursor_name left_ptr"
   spawnOnce "nitrogen --restore"
   spawnOnce "bluetoothctl power on"
   spawnOnce "steam-tweaks"
   spawnOnce "xinput disable \"Sony Computer Entertainment Wireless Controller Touchpad\""
+  spawnOnce "doas mount /dev/sdc ~/Drives/usb"
 main :: IO () 
 main = do
   xmproc0 <- spawnPipe "xmobar -x 2 ~/.xmonad/xmobar/.xmobarrc0"
+             
   xmproc1 <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobar/.xmobarrc1"
   xmproc2 <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobar/.xmobarrc2"
   xmonad $ ewmh def
