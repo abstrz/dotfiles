@@ -2,7 +2,7 @@
   (require 'package)
   (add-to-list 'package-archives
 	       '("melpa" . "http://melpa.org/packages/") t)
-(package-initialize))
+  (package-initialize))
 (defun install (p)
   (unless (package-installed-p p)
     (package-install p))
@@ -39,6 +39,7 @@
   (global-set-key (kbd "C-c C-k") 'copy-line)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
   
@@ -51,7 +52,10 @@
 
 (defun misc-options ()
   (setq inhibit-startup-screen t)
+  ;;use emacs as a server.
+  (server-start)
   (ac-config-default)
+  (ac-set-trigger-key "TAB")
 
   (show-paren-mode 1)
   (menu-bar-mode -1)
@@ -109,6 +113,12 @@
 				     (concat "-" x)))
 				 (cdr fd_as_string))))))
 
+(defun tasks ()
+  (interactive)
+  (save-excursion
+    (insert "* Week of: " (format-time-string "%Y-%m-%d") " - " (future-date 7) " [/] \n")
+    (insert-list (mapcar (lambda (x) (concat "** TODO " x ": \n")) task_list))))
+
 (defun copy-line (arg)
   (interactive "p")
   (let ((beg (line-beginning-position))
@@ -137,8 +147,10 @@
   '("kettlebell-shoulder-press" "swings" "cleans" "shrugs"))
 (defvar core
   '("crunches"))
+(defvar  whole_body
+  '("standups"))
 (defvar task_list
-  '("Take out trash" "Clean apartment" "Study" "Workout" "Yoga/meditation" "Call or message family and friends"))
+  '("Take out trash" "Clean apartment" "Thesis"  "Change plant water" "Workout [/3] " "Yoga/meditation" "Anarchism/Activism/Journalism"))
 
 (defun insert-list (L)
   (unless (null L)
@@ -154,7 +166,6 @@
     (insert-list (mapcar (lambda (x) (concat "*** " x ": \n")) E2))))
 
 
-
 (defun backBi ()
   (interactive)
   (exercises "Back" back "Biceps" biceps))
@@ -164,16 +175,11 @@
 (defun shouldersCore ()
   (interactive)
   (exercises "Shoulders" shoulders "Core" core))
-(defun tasks ()
+(defun wholeBody ()
   (interactive)
-  (save-excursion
-    (insert "* Week of: " (format-time-string "%Y-%m-%d") " - " (future-date 7) " [/] \n")
-    (insert-list (mapcar (lambda (x) (concat "** TODO " x ": \n")) task_list))))
+  (exercises "Whole Body" whole_body "" ()))
 
 ;; AUTO GENERATED 
-
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -181,8 +187,36 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(custom-enabled-themes '(wombat))
- '(package-selected-packages '(magit ##)))
+ '(company-quickhelp-color-background "#4F4F4F")
+ '(company-quickhelp-color-foreground "#DCDCCC")
+ '(custom-enabled-themes '(soothe))
+ '(custom-safe-themes
+   '("b0334e8e314ea69f745eabbb5c1817a173f5e9715493d63b592a8dc9c19a4de6" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
+ '(nrepl-message-colors
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
+ '(package-selected-packages '(ein soothe-theme zenburn-theme ess magit ##))
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map
+   '((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3")))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -67,15 +67,14 @@ xmobarEscape = concatMap doubleLts
                where
                  doubleLts '<' = "<<"
                  doubleLts x = [x]
-
-n_workSpaces :: Int
-n_workSpaces =9                               
+ws :: [String]                               
+ws = ["system", "system", "system", "web", "web", "web", "misc"]
 myWorkspaces :: [String]
 myWorkspaces = clickable . map xmobarEscape
-               $ [show x | x<-[1..n_workSpaces]]
+               $ ws
     where
       clickable l = [ "<action=xdotool key super+" ++ show n ++ "> " ++ ws ++ " </action>" |
-                      (i, ws) <- zip [1..n_workSpaces] l,
+                      (i, ws) <- zip [1..(length ws)] l,
                       let n = i ]
 
 
@@ -151,16 +150,16 @@ myKeys conf @ XConfig {XMonad.modMask = modm} = M.fromList $
 
 
     -- launch vim
-    , ((modm,               xK_apostrophe ), spawn "alacritty -e nvim")
+    , ((modm,               xK_apostrophe ), spawn "emacs")
 
     -- launch nnn
-    , ((modm,               xK_d ), spawn "alacritty -e nnn")
+    , ((modm,               xK_d ), spawn "thunar")
 
-    -- launch firefox
-    , ((modm,               xK_backslash),   spawn "firefox")
+    -- launch brave
+    , ((modm,               xK_backslash),   spawn "brave")
 
     -- launch zathura
-    , ((modm,               xK_z),           spawn "tabbed -c zathura -e")
+    , ((modm,               xK_z),           spawn "foxitreader")
 
     , ((modm,               xK_p),           shellPrompt myXPConfig)
     -- close focused window
@@ -275,8 +274,13 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| noBorders Full)
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
-      [ className =? "Gimp"           --> doFloat ,
-       className =? "steam"           --> doFloat ] 
+               [ className =? "Gimp"           --> doFloat
+               , className =? "Steam"          --> doFloat
+               , className =? "Tor Browser"    --> doFloat
+               , className =? "Brave-browser"  --> doFloat
+               , className =? "Foxit Reader"   --> doFloat
+               , className =? "Emacs"          --> doFloat
+               , className =? "Thunar"         --> doFloat ] 
 
 myEventHook :: Event -> X All
 myEventHook = serverModeEventHookCmd
