@@ -148,22 +148,26 @@ myKeys conf @ XConfig {XMonad.modMask = modm} = M.fromList $
     -- launch a terminal
     [ ((modm , xK_Return), spawn $ XMonad.terminal conf)
 
-
-    -- launch vim
+    -- launch ide
     , ((modm,               xK_apostrophe ), spawn "emacs")
 
-    -- launch nnn
+    -- launch file-explorer
     , ((modm,               xK_d ), spawn "thunar")
 
-    -- launch brave
-    , ((modm,               xK_backslash),   spawn "brave")
+    -- launch web-browser
+    , ((modm,               xK_backslash),   spawn "firefox")
 
-    -- launch zathura
-    , ((modm,               xK_z),           spawn "foxitreader")
+    -- launch reader
+    , ((modm,               xK_z),           spawn "okular")
 
+    -- launch program explorer 
     , ((modm,               xK_p),           shellPrompt myXPConfig)
+
+    -- launch appearances
+    , ((modm, xK_o),                         spawn "lxappearance")
+      
     -- close focused window
-    , ((modm, xK_c     ),                    kill)
+    , ((modm, xK_c),                    kill)
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ),      sendMessage NextLayout)
@@ -236,7 +240,7 @@ myKeys conf @ XConfig {XMonad.modMask = modm} = M.fromList $
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [1, 2, 0]
+        | (key, sc) <- zip [xK_w, xK_e] [1,0]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
@@ -277,9 +281,8 @@ myManageHook = composeAll
                [ className =? "Gimp"           --> doFloat
                , className =? "Steam"          --> doFloat
                , className =? "Tor Browser"    --> doFloat
-               , className =? "Brave-browser"  --> doFloat
                , className =? "Foxit Reader"   --> doFloat
-               , className =? "Emacs"          --> doFloat
+               , className =? "Lxappearance"   --> doFloat
                , className =? "Thunar"         --> doFloat ] 
 
 myEventHook :: Event -> X All
@@ -291,8 +294,9 @@ myEventHook = serverModeEventHookCmd
 myLogSettings :: X ()
 myLogSettings = fadeInactiveLogHook fadeAmount
               where fadeAmount = 1.0                  
-myLogHook b1 b2 b3 = workspaceHistoryHook <+>  myLogSettings <+> dynamicLogWithPP xmobarPP
-                             { ppOutput = \x -> hPutStrLn b1 x  >> hPutStrLn b2 x  >> hPutStrLn b3 x
+myLogHook b = workspaceHistoryHook <+>  myLogSettings <+> dynamicLogWithPP xmobarPP
+                             { ppOutput = (hPutStrLn b)
+                               --ppOutput = \x -> hPutStrLn b1 x  >> hPutStrLn b2 x 
                              , ppCurrent = xmobarColor "#c3e88d" "" . wrap "(" ")" -- Current workspace in xmobar
                              , ppVisible = xmobarColor "#c18a41" ""                -- Visible but not current workspace
                              , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
@@ -318,10 +322,9 @@ myStartupHook = do
   spawnOnce "doas mount /dev/sdc ~/Drives/usb"
 main :: IO () 
 main = do
-  xmproc0 <- spawnPipe "xmobar -x 2 ~/.xmonad/xmobar/.xmobarrc0"
              
-  xmproc1 <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobar/.xmobarrc1"
-  xmproc2 <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobar/.xmobarrc2"
+  xmproc1  <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobar/.xmobarrc0"
+--  xmproc2 <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobar/.xmobarrc1"
   xmonad $ ewmh def
        {
         terminal           = myTerminal,
@@ -339,5 +342,5 @@ main = do
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         startupHook        = myStartupHook,
-        logHook            = myLogHook xmproc0 xmproc1 xmproc2
+        logHook            = myLogHook xmproc1
        }

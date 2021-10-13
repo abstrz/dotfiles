@@ -136,22 +136,24 @@
 
 ;;workouts:
 (defvar back
-  '("bed-rows" "kettlebell-rows" "kettlebell-deadlifts" "floor-swims"))
+  '("swings" "bed lifts" "one hand rows" "floor-swims"))
 (defvar biceps
-  '("kettlebell-curls"))
+  '("curls"))
 (defvar chest
-  '("kettlebell-press" "pushups" "overhead-thing" "closegrip-press"))
+  '("chest press" "push ups" "overhead thing" "closegrip press"))
 (defvar triceps
-  '("kettlebell-extensions"))
+  '("kettlebell extensions"))
 (defvar shoulders
-  '("kettlebell-shoulder-press" "swings" "cleans" "shrugs"))
+  '("cleans" "shoulder press" "swings" "shrugs"))
 (defvar core
   '("crunches"))
 (defvar  whole_body
   '("standups"))
 (defvar task_list
-  '("Take out trash" "Clean apartment" "Thesis"  "Change plant water" "Workout [/3] " "Yoga/meditation" "Anarchism/Activism/Journalism"))
+  '("Income" "School" "Workout" "Anarchism" "Friends/Socializing"))
 
+(defvar yoga
+  '("Yoga "))
 (defun insert-list (L)
   (unless (null L)
     (progn (insert (car L))
@@ -194,7 +196,8 @@
    '("b0334e8e314ea69f745eabbb5c1817a173f5e9715493d63b592a8dc9c19a4de6" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
- '(package-selected-packages '(ein soothe-theme zenburn-theme ess magit ##))
+ '(package-selected-packages
+   '(company-coq yaml-mode fstar-mode ein soothe-theme zenburn-theme ess magit ##))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -207,7 +210,7 @@
      (140 . "#5F7F5F")
      (160 . "#7F9F7F")
      (180 . "#8FB28F")
-     (200 . "#9FC59F")
+     (200 . "#F9C59F")
      (220 . "#AFD8AF")
      (240 . "#BFEBBF")
      (260 . "#93E0E3")
