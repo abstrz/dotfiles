@@ -39,7 +39,7 @@ windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset --Get windows in list of screens, get current screen, get the workspace info, get
 
 myTerminal :: String
-myTerminal = "tabbed -c -r 2 st -w -e"
+myTerminal = "tabbed alacritty --embed"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
