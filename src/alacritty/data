@@ -1,4 +1,1 @@
-target_path=/home/`whoami`/.config/alacritty 
-
-
-
+target=$HOME/.config/alacritty/

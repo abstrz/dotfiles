@@ -187,18 +187,29 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(Linum-format "%7i ")
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
- '(custom-enabled-themes '(soothe))
+ '(custom-enabled-themes '(wombat))
  '(custom-safe-themes
-   '("b0334e8e314ea69f745eabbb5c1817a173f5e9715493d63b592a8dc9c19a4de6" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
+   '("0394928fab4471943a2719497f7b1210053d1a72882391d509debbc23c0dd047" "b0334e8e314ea69f745eabbb5c1817a173f5e9715493d63b592a8dc9c19a4de6" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
+ '(fci-rule-character-color "#202020")
+ '(fci-rule-color "#202020")
+ '(fringe-mode 4 nil (fringe))
+ '(main-line-color1 "#1E1E1E")
+ '(main-line-color2 "#111111")
+ '(main-line-separator-style 'chamfer)
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(package-selected-packages
-   '(company-coq yaml-mode fstar-mode ein soothe-theme zenburn-theme ess magit ##))
+   '(tao-theme company-coq yaml-mode fstar-mode ein soothe-theme zenburn-theme ess magit ##))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
+ '(powerline-color1 "#1E1E1E")
+ '(powerline-color2 "#111111")
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    '((20 . "#BC8383")

@@ -1,7 +1,3 @@
-let g:nvimhsPluginStarter=nvimhs#stack#pluginstarter()
-
-let g:ale_linters = {'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc']}
-
 let g:mapleader= " "
 
 "highlighting
