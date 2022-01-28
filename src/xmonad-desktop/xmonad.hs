@@ -35,7 +35,7 @@ import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Spacing
 
 myFont :: String
-myFont = "xft:Iosevka:bold:size=10:antialias=true:hinting=true"
+myFont = "Font Awesome 5 Free:size=10:antialias=true:hint=true:hintstyle=hintfull; weight=medium: slant=roman: dpi=96"
 
 
 windowCount :: X (Maybe String)
@@ -68,7 +68,7 @@ xmobarEscape = concatMap doubleLts
                  doubleLts '<' = "<<"
                  doubleLts x = [x]
 ws :: [String]                               
-ws = ["system", "system", "system", "web", "web", "web", "misc"]
+ws = ["\62371 system"," \62373 system", "\62373 system", "\62744 web", "\62744 web", "\62744 web", "\62812 misc"]
 myWorkspaces :: [String]
 myWorkspaces = clickable . map xmobarEscape
                $ ws
@@ -143,7 +143,7 @@ myXPKeymap = M.fromList $
 
       
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())                    
-myKeys conf @ XConfig {XMonad.modMask = modm} = M.fromList $  
+myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $  
                                                               
     -- launch a terminal
     [ ((modm , xK_Return), spawn $ XMonad.terminal conf)
