@@ -35,13 +35,11 @@ autoload edit-command-line; zle -N edit-command-line
 
 source ~/dotfiles/main.sh
 source ~/shell-functions/main.sh
-source /usr/share/nvm/init-nvm.sh 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="${PATH}:$HOME/.local/bin/"
-export beats_id=DC:D3:A2:C4:41:1F
+export beats_id=88:E9:FE:93:7F:BF
 export _JAVA_AWT_WM_NONREPARENTING=1
-export NNN_USE_EDITOR=1
 
 [ -f "/home/david/.ghcup/env" ] && source "/home/david/.ghcup/env" # ghcup-env
 
