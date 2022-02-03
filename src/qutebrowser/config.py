@@ -37,9 +37,12 @@ c.bindings.commands['normal'] = {
 
 	# Commands
 	'<alt-x>': 'set-cmd-text :',
-	'<ctrl-x>b': 'bookmark-list',
+	'<ctrl-x>bl': 'bookmark-list',
+        '<ctrl-x>ba': 'bookmark-add',
+        '<ctrl-x>bd': 'bookmark-del',
 	'<ctrl-x>k': 'tab-close',
 	'<ctrl-x><ctrl-c>': 'quit',
+        '<ctrl-x>r': 'reload',
 
 
 	'<ctrl-s>': 'set-cmd-text /',
@@ -55,6 +58,7 @@ c.bindings.commands['normal'] = {
 
 	# tabs
 	'<ctrl-tab>': 'tab-next',
+        '<ctrl-x>o': 'tab-next',
 	'<ctrl-shift-tab>': 'tab-prev',
 
 	# open links
